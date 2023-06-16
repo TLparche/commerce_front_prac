@@ -22,6 +22,7 @@ const BannerDiv = styled.div`
   display: flex;
   width: 100%;
   height: 130px;
+  align-items: center;
 `
 const StyledNav = styled.nav`
   display: flex;
@@ -31,7 +32,6 @@ const StyledLogo = styled.img`
   width: 200px;
   height: 100px;
   vertical-align: top;
-
   overflow: clip;
 `
 
@@ -41,17 +41,14 @@ const SearchBarSpan = styled.span`
   margin: 0;
   display: flex;
   padding: 7px 8px 8px;
+  height: 32px;
+  width: 100%;
 `
 const SearchBarFieldset = styled.fieldset`
-  width: 100%;
-  display: block;
-  margin-inline-start: 2px;
-  margin-inline-end: 2px;
-  padding-block-start: 0.35em;
-  padding-inline-start: 0.75em;
-  padding-inline-end: 0.75em;
-  padding-block-end: 0.625em;
+  display: flex;
   min-inline-size: min-content;
+  border: 0;
+  flex: 1 0 auto;
 `
 const SearchBarInput = styled.input`
   display: block;
@@ -107,6 +104,7 @@ export default function Header() {
                         </SearchBarButton>
                     </SearchBarSpan>
                 </SearchBarFieldset>
+                <StyledLogo src={"https://i.imgur.com/gSPz2ZM.jpeg"} alt={"ad"}/>
             </BannerDiv>
         </div>
 
