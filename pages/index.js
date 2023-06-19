@@ -5,7 +5,7 @@ export default function Homepage() {
     return (
         <div>
             <Header/>
-            <Featured />
+            {/*<Featured />*/}
         </div>
     )
 

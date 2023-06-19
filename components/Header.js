@@ -1,20 +1,17 @@
 import Link from "next/link";
 import styled, {css} from 'styled-components';
 import {useState} from 'react'
+import Banner from '@/components/BannerSlide'
 
 const AllDiv = styled.div`
-    width: 100%;
+  width: 100%;
 `
-const StyledCategoryDiv = styled.div`
-  position: relative;
-`;
-
 const NavLink = styled(Link)`
   color: black;
   text-decoration: none;
 `;
 
-const BannerDiv = styled.div`
+const HeaderDiv = styled.div`
   display: flex;
   width: 100%;
   height: 130px;
@@ -136,7 +133,7 @@ const EveryCategoryButton = styled.button`
   box-sizing: border-box;
   cursor: pointer;
   border: 0 none;
-  /*&::before{
+    /*&::before{
     content: '';
     width: 26px;
     height: 21px;
@@ -223,7 +220,8 @@ const MainTopDiv = styled.div`
   height: 400px;
   overflow: hidden;
   min-width: 1200px;
-  &::after{
+
+  &::after {
     content: '';
     position: absolute;
     left: 0;
@@ -240,7 +238,8 @@ const MainTopDivInner = styled.div`
   margin: 0 auto;
   padding-left: 224px;
   box-sizing: border-box;
-  &::after{
+
+  &::after {
     display: block;
     content: '';
     clear: both;
@@ -252,7 +251,8 @@ const BoxCategoryDiv = styled.div`
   left: 0;
   width: 224px;
   height: 400px;
-  &::before{
+
+  &::before {
     content: '';
     position: absolute;
     top: 0;
@@ -273,13 +273,19 @@ const BoxCategoryH2 = styled.h2`
   overflow: hidden;
   text-indent: -5000em;
 `
+const BannerDiv = styled.div`
+    visibility: visible;
+`
 const CategoryListBorderBottom = styled.li`
   border-top: 1px solid #65C466;
   background-color: #fff;
   box-sizing: border-box;
 `
 export default function Header() {
-    const [categorySelect, SetCategorySelect] = useState(false)
+    const [categorySelect, setCategorySelect] = useState(false)
+    const [bannerLocation, setBannerLocation] = useState(0)
+    const bannerNumber = 3;
+
     return (
         <AllDiv>
             <TopLayout id={"header"}>
@@ -288,7 +294,7 @@ export default function Header() {
                         <TopHeader>text here</TopHeader>
                         <BoxHeaderDivInner>
                             <div>
-                                <BannerDiv>
+                                <HeaderDiv>
                                     <NavLink href={"/"}>
                                         <StyledLogo src={"https://i.imgur.com/Jvh1OQm.jpeg"} alt={"asd"}/>
                                     </NavLink>
@@ -366,21 +372,22 @@ export default function Header() {
                                             </BannerButton>
                                         </NavLink>
                                     </BannerButtonDiv>
-                                </BannerDiv>
+                                </HeaderDiv>
                                 <EveryCategoryButton
                                     isClicked={categorySelect}
-                                    onClick={() => (categorySelect ? SetCategorySelect(false) : SetCategorySelect(true))}>
+                                    onClick={() => (categorySelect ? setCategorySelect(false) : setCategorySelect(true))}>
                                     {categorySelect ? (
                                         <CategorySvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                      strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
-                                    </CategorySvg>) :(
+                                            <path strokeLinecap="round" strokeLinejoin="round"
+                                                  d="M6 18L18 6M6 6l12 12"/>
+                                        </CategorySvg>) : (
                                         <CategorySvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                      strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                             <path strokeLinecap="round" strokeLinejoin="round"
                                                   d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
                                         </CategorySvg>
-                                        )
+                                    )
                                     }
                                     Category
                                 </EveryCategoryButton>
@@ -395,7 +402,7 @@ export default function Header() {
                         <MainTopDivInner>
                             <BoxCategoryDiv>
                                 <BoxCategoryH2>Every Category</BoxCategoryH2>
-                                <div>
+                                <div id={"category"}>
                                     <SpeCategoryDiv>
                                         <SpeCategoryUl>
                                             <li>
@@ -789,6 +796,9 @@ export default function Header() {
                                     </SpeCategoryDiv>
                                 </div>
                             </BoxCategoryDiv>
+                            <BannerDiv id={"Banner"}>
+                                <Banner />
+                            </BannerDiv>
                         </MainTopDivInner>
                     </MainTopDiv>
 
