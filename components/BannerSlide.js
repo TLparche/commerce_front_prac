@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components'
 
 const BannerEntireDiv = styled.div`
@@ -14,7 +14,7 @@ const BannerUl = styled.ul`
   box-sizing: content-box;
   transition-property: transform, -webkit-transform;
   list-style: none;
-  //포지션 추가할것
+  margin: 0;
 `
 const BannerFirstLi = styled.li`
   width: 976px;
@@ -93,7 +93,6 @@ const BannerSlide = ({ index, location, children }) => {
     );
 };
 
-// 슬라이드 쇼 컴포넌트
 const Slideshow = ({ images }) => {
     const [bannerLocation, setBannerLocation] = useState(0);
     const bannerNumber = images.length;
@@ -105,6 +104,14 @@ const Slideshow = ({ images }) => {
     const handlePrevSlide = () => {
         setBannerLocation((prev) => (prev - 1 + bannerNumber) % bannerNumber);
     };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setBannerLocation((prev) => (prev + 1) % bannerNumber);
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [bannerNumber]);
 
     return (
         <BannerEntireDiv>
@@ -133,7 +140,6 @@ const Slideshow = ({ images }) => {
     );
 };
 
-// 사용 예시
 const images = [
     'https://i.imgur.com/Db2ucgk.jpg',
     'https://i.imgur.com/6rqrtNq.jpg',
@@ -142,4 +148,4 @@ const images = [
 
 export default function Banner() {
     return <Slideshow images={images} />;
-};
+}

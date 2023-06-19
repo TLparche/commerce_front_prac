@@ -1,8 +1,57 @@
 import Link from "next/link";
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 import {useState} from 'react'
 import Banner from '@/components/BannerSlide'
 
+const BoxCategoryDiv = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 224px;
+  height: 400px;
+`
+const BoxCategoryH2 = styled.h2`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  text-indent: -5000em;
+`
+const SpeCategoryDiv = styled.div`
+  position: relative;
+  height: 400px;
+  z-index: 100;
+  display: block;
+`
+const SpeCategoryUl = styled.ul`
+  position: relative;
+  width: 224px;
+  z-index: 100;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`
+const CategoryA = styled.a`
+  position: relative;
+  display: block;
+  height: 44px;
+  font-size: 15px;
+  letter-spacing: -1px;
+  color: #fff;
+  background-color: #0abb26;
+  text-indent: 24px;
+  line-height: 42px;
+  cursor: pointer;
+`
+const CategoryListBorderBottom = styled.li`
+  border-top: 1px solid #65C466;
+  background-color: #fff;
+  box-sizing: border-box;
+`
 const AllDiv = styled.div`
   width: 100%;
 `
@@ -133,87 +182,11 @@ const EveryCategoryButton = styled.button`
   box-sizing: border-box;
   cursor: pointer;
   border: 0 none;
-    /*&::before{
-    content: '';
-    width: 26px;
-    height: 21px;
-    margin: -4px 11px 0 23px;
-    background-position: -252px -40px;
-    vertical-align: middle;
-    display: inline-block;
-    background-size: 400px auto;
-    text-indent: -9999px;
-  }
-  ${({isClicked}) => isClicked && css`
-    &::before {
-      background-position: -308px -40px;
-    }
-  `}*/
 `
 const CategorySvg = styled.svg`
   width: 40px; /* 원하는 크기로 조정 */
   height: 40px; /* 원하는 크기로 조정 */
   margin: 10px
-`
-const SpeCategoryDiv = styled.div`
-  position: relative;
-  height: 400px;
-  z-index: 100;
-  display: block;
-`
-const SpeCategoryUl = styled.ul`
-  position: relative;
-  width: 224px;
-  z-index: 100;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`
-const CategoryA = styled.a`
-  position: relative;
-  display: block;
-  height: 44px;
-  font-size: 15px;
-  letter-spacing: -1px;
-  color: #fff;
-  background-color: #0abb26;
-  text-indent: 24px;
-  line-height: 42px;
-  cursor: pointer;
-`
-const CategoryDiv = styled.div`
-  display: none;
-  position: absolute;
-  left: 224px;
-  top: 0;
-  width: 976px;
-  height: 400px;
-`
-const CategoryDivOverflow = styled.div`
-  overflow: hidden;
-`
-const InnerCategoryDiv = styled.div`
-  float: left;
-  width: 192px;
-  height: 332px;
-`
-const CategorySpan = styled.span`
-  display: block;
-  padding: 22px 0 0 35px;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 28px;
-  color: #222;
-  letter-spacing: -1px;
-`
-const CategoryUl = styled.ul`
-  padding: 5px 0 0 35px;
-`
-const SpeCategoryA = styled.a`
-  font-size: 14px;
-  line-height: 29px;
-  letter-spacing: -1px;
-  color: #777;
 `
 const MainTopDiv = styled.div`
   position: relative;
@@ -221,16 +194,6 @@ const MainTopDiv = styled.div`
   overflow: hidden;
   min-width: 1200px;
 
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    z-index: 10;
-    width: 100%;
-    height: 1px;
-    background-color: rgba(0, 0, 0, 0.05);
-  }
 `
 const MainTopDivInner = styled.div`
   position: relative;
@@ -239,53 +202,12 @@ const MainTopDivInner = styled.div`
   padding-left: 224px;
   box-sizing: border-box;
 
-  &::after {
-    display: block;
-    content: '';
-    clear: both;
-  }
-`
-const BoxCategoryDiv = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 224px;
-  height: 400px;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    z-index: 10;
-    left: -25px;
-    width: 25px;
-    height: 400px;
-  }
-`
-const BoxCategoryH2 = styled.h2`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  clip: rect(0 0 0 0);
-  overflow: hidden;
-  text-indent: -5000em;
 `
 const BannerDiv = styled.div`
-    visibility: visible;
-`
-const CategoryListBorderBottom = styled.li`
-  border-top: 1px solid #65C466;
-  background-color: #fff;
-  box-sizing: border-box;
+  visibility: visible;
 `
 export default function Header() {
     const [categorySelect, setCategorySelect] = useState(false)
-    const [bannerLocation, setBannerLocation] = useState(0)
-    const bannerNumber = 3;
-
     return (
         <AllDiv>
             <TopLayout id={"header"}>
@@ -397,415 +319,48 @@ export default function Header() {
                 </TopLayoutInner>
             </TopLayout>
             <div id={"container"}>
-                <div>
-                    <MainTopDiv>
-                        <MainTopDivInner>
-                            <BoxCategoryDiv>
-                                <BoxCategoryH2>Every Category</BoxCategoryH2>
-                                <div id={"category"}>
-                                    <SpeCategoryDiv>
-                                        <SpeCategoryUl>
-                                            <li>
-                                                <CategoryA>Snack</CategoryA>
-                                                <CategoryDiv>
-                                                    <CategoryDivOverflow>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Biscuit</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <SpeCategoryA>Chocolate</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Butter</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Vanilla</SpeCategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Strawberry</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>Cracker</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>Potato</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Mango</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>bar</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>frozen</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                    </CategoryDivOverflow>
-                                                </CategoryDiv>
-                                            </li>
-                                            <CategoryListBorderBottom>
-                                                <CategoryA>Snack</CategoryA>
-                                                <CategoryDiv>
-                                                    <CategoryDivOverflow>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Biscuit</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <SpeCategoryA>Chocolate</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Butter</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Vanilla</SpeCategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Strawberry</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>Cracker</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>Potato</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Mango</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>bar</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>frozen</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                    </CategoryDivOverflow>
-                                                </CategoryDiv>
-                                            </CategoryListBorderBottom>
-                                            <CategoryListBorderBottom>
-                                                <CategoryA>Snack</CategoryA>
-                                                <CategoryDiv>
-                                                    <CategoryDivOverflow>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Biscuit</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <SpeCategoryA>Chocolate</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Butter</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Vanilla</SpeCategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Strawberry</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>Cracker</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>Potato</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Mango</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>bar</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>frozen</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                    </CategoryDivOverflow>
-                                                </CategoryDiv>
-                                            </CategoryListBorderBottom>
-                                            <CategoryListBorderBottom>
-                                                <CategoryA>Snack</CategoryA>
-                                                <CategoryDiv>
-                                                    <CategoryDivOverflow>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Biscuit</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <SpeCategoryA>Chocolate</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Butter</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Vanilla</SpeCategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Strawberry</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>Cracker</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>Potato</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Mango</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>bar</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>frozen</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                    </CategoryDivOverflow>
-                                                </CategoryDiv>
-                                            </CategoryListBorderBottom>
-                                            <CategoryListBorderBottom>
-                                                <CategoryA>Snack</CategoryA>
-                                                <CategoryDiv>
-                                                    <CategoryDivOverflow>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Biscuit</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <SpeCategoryA>Chocolate</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Butter</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Vanilla</SpeCategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Strawberry</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>Cracker</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>Potato</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Mango</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>bar</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>frozen</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                    </CategoryDivOverflow>
-                                                </CategoryDiv>
-                                            </CategoryListBorderBottom>
-                                            <CategoryListBorderBottom>
-                                                <CategoryA>Snack</CategoryA>
-                                                <CategoryDiv>
-                                                    <CategoryDivOverflow>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Biscuit</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <SpeCategoryA>Chocolate</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Butter</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Vanilla</SpeCategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Strawberry</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>Cracker</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>Potato</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Mango</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>bar</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>frozen</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                    </CategoryDivOverflow>
-                                                </CategoryDiv>
-                                            </CategoryListBorderBottom>
-                                            <CategoryListBorderBottom>
-                                                <CategoryA>Snack</CategoryA>
-                                                <CategoryDiv>
-                                                    <CategoryDivOverflow>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Biscuit</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <SpeCategoryA>Chocolate</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Butter</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Vanilla</SpeCategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Strawberry</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>Cracker</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>Potato</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Mango</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>bar</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>frozen</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                    </CategoryDivOverflow>
-                                                </CategoryDiv>
-                                            </CategoryListBorderBottom>
-                                            <CategoryListBorderBottom>
-                                                <CategoryA>Snack</CategoryA>
-                                                <CategoryDiv>
-                                                    <CategoryDivOverflow>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Biscuit</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <SpeCategoryA>Chocolate</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Butter</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Vanilla</SpeCategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Strawberry</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>Cracker</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>Potato</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Mango</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>bar</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>frozen</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                    </CategoryDivOverflow>
-                                                </CategoryDiv>
-                                            </CategoryListBorderBottom>
-                                            <CategoryListBorderBottom>
-                                                <CategoryA>Snack</CategoryA>
-                                                <CategoryDiv>
-                                                    <CategoryDivOverflow>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Biscuit</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <SpeCategoryA>Chocolate</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Butter</SpeCategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <SpeCategoryA>Vanilla</SpeCategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Strawberry</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>Cracker</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>Potato</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                        <InnerCategoryDiv>
-                                                            <CategorySpan>Mango</CategorySpan>
-                                                            <CategoryUl>
-                                                                <li>
-                                                                    <CategoryA>bar</CategoryA>
-                                                                </li>
-                                                                <li>
-                                                                    <CategoryA>frozen</CategoryA>
-                                                                </li>
-                                                            </CategoryUl>
-                                                        </InnerCategoryDiv>
-                                                    </CategoryDivOverflow>
-                                                </CategoryDiv>
-                                            </CategoryListBorderBottom>
-                                        </SpeCategoryUl>
-                                    </SpeCategoryDiv>
-                                </div>
-                            </BoxCategoryDiv>
-                            <BannerDiv id={"Banner"}>
-                                <Banner />
-                            </BannerDiv>
-                        </MainTopDivInner>
-                    </MainTopDiv>
-
-                </div>
-
+                <MainTopDiv>
+                    <MainTopDivInner>
+                        <BoxCategoryDiv>
+                            <BoxCategoryH2>Every Category</BoxCategoryH2>
+                            <div id={"category"}>
+                                <SpeCategoryDiv>
+                                    <SpeCategoryUl>
+                                        <li><CategoryA>Snack</CategoryA></li>
+                                        <CategoryListBorderBottom>
+                                            <CategoryA>Snack</CategoryA>
+                                        </CategoryListBorderBottom>
+                                        <CategoryListBorderBottom>
+                                            <CategoryA>Snack</CategoryA>
+                                        </CategoryListBorderBottom>
+                                        <CategoryListBorderBottom>
+                                            <CategoryA>Snack</CategoryA>
+                                        </CategoryListBorderBottom>
+                                        <CategoryListBorderBottom>
+                                            <CategoryA>Snack</CategoryA>
+                                        </CategoryListBorderBottom>
+                                        <CategoryListBorderBottom>
+                                            <CategoryA>Snack</CategoryA>
+                                        </CategoryListBorderBottom>
+                                        <CategoryListBorderBottom>
+                                            <CategoryA>Snack</CategoryA>
+                                        </CategoryListBorderBottom>
+                                        <CategoryListBorderBottom>
+                                            <CategoryA>Snack</CategoryA>
+                                        </CategoryListBorderBottom>
+                                        <CategoryListBorderBottom>
+                                            <CategoryA>Snack</CategoryA>
+                                        </CategoryListBorderBottom>
+                                    </SpeCategoryUl>
+                                </SpeCategoryDiv>
+                            </div>
+                        </BoxCategoryDiv>
+                        <BannerDiv id={"Banner"}>
+                            <Banner/>
+                        </BannerDiv>
+                    </MainTopDivInner>
+                </MainTopDiv>
             </div>
-
         </AllDiv>
     );
 }
