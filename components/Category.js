@@ -83,9 +83,34 @@ const CategoryListBorderBottom = styled.li`
   background-color: #fff;
   box-sizing: border-box;
 `
+const CsDiv = styled.div`
+  width: 224px;
+  font-size: 11px;
+  color: #777777;
+  padding: 25px 20px 19px;
+  background: #f5f5f5;
+  box-sizing: border-box;
+`
+const CsH2 = styled.h2`
+  font-size: 18px;
+  font-weight: 400;
+  color: #222;
+  margin-bottom: 10px;
+  line-height: 46px;
+`
+const CsList = styled.li`
+  font-size: 24px;
+  font-weight: 600;
+  color: #222;
+  padding-bottom: 10px;
+`
+const CsUl = styled.ul`
+  list-style: none;
+  padding: 0;
+`
 
-function SpecCategoryList(){
-    return(
+function SpecCategoryList() {
+    return (
         <li>
             <CategoryA>Snack</CategoryA>
             <CategoryDiv>
@@ -131,41 +156,63 @@ function SpecCategoryList(){
         </li>
     )
 }
-export default function Category(){
-    return(
+
+export function InsideCategory() {
+    return (
+        <SpeCategoryUl>
+            <li><CategoryA>Snack</CategoryA></li>
+            <CategoryListBorderBottom>
+                <CategoryA>Snack</CategoryA>
+            </CategoryListBorderBottom>
+            <CategoryListBorderBottom>
+                <CategoryA>Snack</CategoryA>
+            </CategoryListBorderBottom>
+            <CategoryListBorderBottom>
+                <CategoryA>Snack</CategoryA>
+            </CategoryListBorderBottom>
+            <CategoryListBorderBottom>
+                <CategoryA>Snack</CategoryA>
+            </CategoryListBorderBottom>
+            <CategoryListBorderBottom>
+                <CategoryA>Snack</CategoryA>
+            </CategoryListBorderBottom>
+            <CategoryListBorderBottom>
+                <CategoryA>Snack</CategoryA>
+            </CategoryListBorderBottom>
+            <CategoryListBorderBottom>
+                <CategoryA>Snack</CategoryA>
+            </CategoryListBorderBottom>
+            <CategoryListBorderBottom>
+                <CategoryA>Snack</CategoryA>
+            </CategoryListBorderBottom>
+        </SpeCategoryUl>
+    )
+}
+
+export function CategorySideBar() {
+    return (
+        <div>
+            <InsideCategory/>
+            <CsDiv>
+                <CsH2>CS CENTER</CsH2>
+                <CsUl>
+                    <CsList>010-1234-5678</CsList>
+                </CsUl>
+            </CsDiv>
+        </div>
+    )
+}
+
+export default function Category() {
+    return (
         <BoxCategoryDiv>
             <BoxCategoryH2>Every Category</BoxCategoryH2>
             <div id={"category"}>
                 <SpeCategoryDiv>
-                    <SpeCategoryUl>
-                        <li><CategoryA>Snack</CategoryA></li>
-                        <CategoryListBorderBottom>
-                            <CategoryA>Snack</CategoryA>
-                        </CategoryListBorderBottom>
-                        <CategoryListBorderBottom>
-                            <CategoryA>Snack</CategoryA>
-                        </CategoryListBorderBottom>
-                        <CategoryListBorderBottom>
-                            <CategoryA>Snack</CategoryA>
-                        </CategoryListBorderBottom>
-                        <CategoryListBorderBottom>
-                            <CategoryA>Snack</CategoryA>
-                        </CategoryListBorderBottom>
-                        <CategoryListBorderBottom>
-                            <CategoryA>Snack</CategoryA>
-                        </CategoryListBorderBottom>
-                        <CategoryListBorderBottom>
-                            <CategoryA>Snack</CategoryA>
-                        </CategoryListBorderBottom>
-                        <CategoryListBorderBottom>
-                            <CategoryA>Snack</CategoryA>
-                        </CategoryListBorderBottom>
-                        <CategoryListBorderBottom>
-                            <CategoryA>Snack</CategoryA>
-                        </CategoryListBorderBottom>
-                    </SpeCategoryUl>
+                    <InsideCategory/>
                 </SpeCategoryDiv>
             </div>
         </BoxCategoryDiv>
     )
 }
+
