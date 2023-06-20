@@ -2,20 +2,20 @@ import styled from 'styled-components'
 import Link from 'next/link'
 
 const SearchResultDiv = styled.div`
-position: relative;
+  position: relative;
   margin: 0 0 70px 30px;
   width: 976px;
 `
 const TopDiv = styled.div`
-margin: 30px 0 0;
+  margin: 30px 0 0;
   line-height: 10px;
 `
 const TopP = styled.p`
-font-size: 12px;
+  font-size: 12px;
 `
 const ProductUl = styled.ul`
-    width: 100%;
-  padding:0;
+  width: 100%;
+  padding: 0;
 `
 const ProductBoxDiv = styled.div`
   width: 24%;
@@ -47,12 +47,12 @@ const ProductImg = styled.img`
 const ProductInformation = styled.div`
   width: 100%;
   position: relative;
-    min-height:80px;
+  min-height: 80px;
   padding: 10px 0 10px;
 `
 const ProductInformationInner = styled.div`
   margin-left: 10%;
-width: 100%;
+  width: 100%;
   position: relative;
 `
 const ProductTitle = styled.div`
@@ -61,19 +61,19 @@ const ProductTitle = styled.div`
   max-height: 45px;
 `
 const TitleSpan = styled.span`
-font-size: 15px;
+  font-size: 15px;
 `
 const ProductPrice = styled.div`
-    margin-top: 5px;
+  margin-top: 5px;
 `
 const PriceSpan = styled.span`
-    font-size: 18px;
+  font-size: 18px;
 `
 
 
-export default function SearchResult({products}){
+export default function SearchResult({products}) {
     console.log(products)
-    return(
+    return (
         <SearchResultDiv>
             <TopDiv>
                 <TopP>
@@ -87,7 +87,7 @@ export default function SearchResult({products}){
                             <ProductBoxContainer>
                                 <ProductImageDiv>
                                     <Link href={"/product/" + product._id}>
-                                        <ProductImg src={product.images[0]} />
+                                        <ProductImg src={product.images[0]}/>
                                     </Link>
                                 </ProductImageDiv>
                                 <ProductInformation>

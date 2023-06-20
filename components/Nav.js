@@ -144,11 +144,11 @@ export default function Nav() {
     const router = useRouter()
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            router.push("/search/"+searchText)
+            router.push("/search/" + searchText)
             setSearchText("")
         }
     };
-    return(
+    return (
         <TopLayout id={"header"}>
             <TopLayoutInner>
                 <BoxHeaderDiv>
@@ -161,8 +161,10 @@ export default function Nav() {
                                 </NavLink>
                                 <SearchBarFieldset>
                                     <SearchBarSpan>
-                                        <SearchBarInput value={searchText} onChange={(event) => setSearchText(event.target.value)} onKeyPress={handleKeyPress}/>
-                                        <Link href={"/search/"+searchText}>
+                                        <SearchBarInput value={searchText}
+                                                        onChange={(event) => setSearchText(event.target.value)}
+                                                        onKeyPress={handleKeyPress}/>
+                                        <Link href={"/search/" + searchText}>
                                             <SearchButton onClick={() => setSearchText("")}>
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"

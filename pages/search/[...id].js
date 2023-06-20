@@ -32,10 +32,11 @@ export default function ProductSearch({newProducts}) {
         </div>
     )
 }
-export async function getServerSideProps(){
+
+export async function getServerSideProps() {
     await mongooseConnect();
-    const newProducts = await Product.find({}, {title:1, images:1, price:1}, {sort: {'_id': 1}})
-    return{
+    const newProducts = await Product.find({}, {title: 1, images: 1, price: 1}, {sort: {'_id': 1}})
+    return {
         props: {
             newProducts: JSON.parse(JSON.stringify(newProducts))
         }
