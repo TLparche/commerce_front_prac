@@ -140,25 +140,28 @@ export default function Category(){
                     <SpeCategoryUl>
                         <li><CategoryA>Snack</CategoryA></li>
                         <CategoryListBorderBottom>
-                            <li><CategoryA>Snack</CategoryA></li>
+                            <CategoryA>Snack</CategoryA>
                         </CategoryListBorderBottom>
                         <CategoryListBorderBottom>
-                            <li><CategoryA>Snack</CategoryA></li>
+                            <CategoryA>Snack</CategoryA>
                         </CategoryListBorderBottom>
                         <CategoryListBorderBottom>
-                            <li><CategoryA>Snack</CategoryA></li>
+                            <CategoryA>Snack</CategoryA>
                         </CategoryListBorderBottom>
                         <CategoryListBorderBottom>
-                            <li><CategoryA>Snack</CategoryA></li>
+                            <CategoryA>Snack</CategoryA>
                         </CategoryListBorderBottom>
                         <CategoryListBorderBottom>
-                            <li><CategoryA>Snack</CategoryA></li>
+                            <CategoryA>Snack</CategoryA>
                         </CategoryListBorderBottom>
                         <CategoryListBorderBottom>
-                            <li><CategoryA>Snack</CategoryA></li>
+                            <CategoryA>Snack</CategoryA>
                         </CategoryListBorderBottom>
                         <CategoryListBorderBottom>
-                            <li><CategoryA>Snack</CategoryA></li>
+                            <CategoryA>Snack</CategoryA>
+                        </CategoryListBorderBottom>
+                        <CategoryListBorderBottom>
+                            <CategoryA>Snack</CategoryA>
                         </CategoryListBorderBottom>
                     </SpeCategoryUl>
                 </SpeCategoryDiv>
