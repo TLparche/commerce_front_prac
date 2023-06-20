@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 
 const NavLink = styled(Link)`
   color: black;
@@ -36,6 +37,7 @@ const SearchBarFieldset = styled.fieldset`
   display: flex;
   min-inline-size: min-content;
   border: 0;
+  margin-left: 100px;
   flex: 6 0 auto;
 `;
 
@@ -139,6 +141,13 @@ const CategorySvg = styled.svg`
 export default function Nav() {
     const [categorySelect, setCategorySelect] = useState(false)
     const [searchText, setSearchText] = useState("")
+    const router = useRouter()
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            router.push("/search/"+searchText)
+            setSearchText("")
+        }
+    };
     return(
         <TopLayout id={"header"}>
             <TopLayoutInner>
@@ -152,9 +161,9 @@ export default function Nav() {
                                 </NavLink>
                                 <SearchBarFieldset>
                                     <SearchBarSpan>
-                                        <SearchBarInput value={searchText} onChange={(event) => setSearchText(event.target.value)}/>
+                                        <SearchBarInput value={searchText} onChange={(event) => setSearchText(event.target.value)} onKeyPress={handleKeyPress}/>
                                         <Link href={"/search/"+searchText}>
-                                            <SearchButton>
+                                            <SearchButton onClick={() => setSearchText("")}>
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     fill="none"
@@ -241,8 +250,7 @@ export default function Nav() {
                                         <path strokeLinecap="round" strokeLinejoin="round"
                                               d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
                                     </CategorySvg>
-                                )
-                                }
+                                )}
                                 Category
                             </EveryCategoryButton>
                         </div>
