@@ -1,6 +1,5 @@
 import Nav from '@/components/Nav'
 import {CategorySideBar} from '@/components/Category'
-import styled from 'styled-components'
 
 const Wrapper = styled.div`
   position: relative;
@@ -12,7 +11,7 @@ const Container = styled.div`
   display: flex;
 `
 
-export default function ProductPage(){
+export default function Notice() {
     return(
         <div>
             <Nav/>
