@@ -137,6 +137,30 @@ const CategorySvg = styled.svg`
   height: 40px; /* 원하는 크기로 조정 */
   margin: 10px
 `
+const CategoryBarDiv = styled.div`
+  width: 1200px;
+  height: 60px;
+  display: flex;
+`
+const ServiceDiv = styled.div`
+  margin-left: auto;
+  padding-right: 30px;
+`
+const ServiceSpecDiv = styled.div`
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px 0 10px;
+
+  
+`
+const ServiceSpecLink = styled(Link)`
+  font-size: 16pt;
+  color: black;
+  
+`
+
 
 export default function Nav() {
     const [categorySelect, setCategorySelect] = useState(false)
@@ -238,23 +262,33 @@ export default function Nav() {
                                     </NavLink>
                                 </BannerButtonDiv>
                             </HeaderDiv>
-                            <EveryCategoryButton
-                                isClicked={categorySelect}
-                                onClick={() => (categorySelect ? setCategorySelect(false) : setCategorySelect(true))}>
-                                {categorySelect ? (
-                                    <CategorySvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                 strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round"
-                                              d="M6 18L18 6M6 6l12 12"/>
-                                    </CategorySvg>) : (
-                                    <CategorySvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                 strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round"
-                                              d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
-                                    </CategorySvg>
-                                )}
-                                Category
-                            </EveryCategoryButton>
+                            <CategoryBarDiv>
+                                <EveryCategoryButton
+                                    isClicked={categorySelect}
+                                    onClick={() => (categorySelect ? setCategorySelect(false) : setCategorySelect(true))}>
+                                    {categorySelect ? (
+                                        <CategorySvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                     strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round"
+                                                  d="M6 18L18 6M6 6l12 12"/>
+                                        </CategorySvg>) : (
+                                        <CategorySvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                     strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round"
+                                                  d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
+                                        </CategorySvg>
+                                    )}
+                                    Category
+                                </EveryCategoryButton>
+                                <ServiceDiv>
+
+                                    <ServiceSpecDiv>
+                                        <ServiceSpecLink href={"/notice"} style={{textDecoration: "none"}}>
+                                            Notice
+                                        </ServiceSpecLink>
+                                    </ServiceSpecDiv>
+                                </ServiceDiv>
+                            </CategoryBarDiv>
                         </div>
                     </BoxHeaderDivInner>
                 </BoxHeaderDiv>
