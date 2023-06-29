@@ -72,7 +72,7 @@ export default function NoticeWrite() {
                     <MainDiv>
                         <div>
                             <TitleH2>
-                                게시글 작성
+                                게시글 조회
                             </TitleH2>
                         </div>
                         <WritingBoardDiv>

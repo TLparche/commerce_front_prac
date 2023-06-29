@@ -15,16 +15,6 @@ const Container = styled.div`
 `
 
 export default function Notice() {
-    useEffect(() => {
-        // MySQL 연결 사용 예시
-        connection.query('SELECT * FROM your_table', (err, rows) => {
-            if (err) {
-                console.error('Error executing query:', err);
-                return;
-            }
-            console.log('Query result:', rows);
-        });
-    }, []);
     return(
         <div>
             <Nav/>

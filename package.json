@@ -15,13 +15,15 @@
     "eslint-config-next": "13.4.5",
     "mongoose": "^7.3.0",
     "mysql2": "^3.4.2",
+    "net": "^1.0.2",
     "next": "13.4.5",
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native-web": "^0.19.4",
     "styled-components": "^5.3.10",
-    "tailwindcss": "3.3.2"
+    "tailwindcss": "3.3.2",
+    "tls": "^0.0.1"
   },
   "devDependencies": {
     "tailwind-styled-components": "^2.2.0"
