@@ -1,8 +1,6 @@
 import Nav from '@/components/Nav'
 import {CategorySideBar} from '@/components/Category'
 import styled from 'styled-components'
-import {useEffect} from 'react'
-import connection from '@/pages/api/posts'
 
 const Wrapper = styled.div`
   position: relative;

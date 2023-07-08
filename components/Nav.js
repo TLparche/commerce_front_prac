@@ -158,6 +158,11 @@ const ServiceSpecDiv = styled.div`
 const ServiceSpecLink = styled(Link)`
   font-size: 16pt;
   color: black;
+`
+
+const BottomBarDiv = styled.div`
+ height: 200px;
+  width: 100%;
   
 `
 
@@ -294,5 +299,12 @@ export default function Nav() {
                 </BoxHeaderDiv>
             </TopLayoutInner>
         </TopLayout>
+    )
+}
+
+export function BottomBar() {
+    return(
+        <BottomBarDiv>
+        </BottomBarDiv>
     )
 }
