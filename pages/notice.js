@@ -3,6 +3,7 @@ import {CategorySideBar} from '@/components/Category'
 import styled from 'styled-components'
 import {useEffect, useState} from 'react'
 import axios from 'axios'
+import Link from 'next/link'
 
 const Wrapper = styled.div`
   position: relative;
@@ -91,6 +92,10 @@ const BoardList = styled.div`
   .title {
     width: 60%;
     text-align: left;
+    a{
+      text-decoration: none;
+      color: inherit;
+    }
   }
 
   .top .title {
@@ -132,7 +137,7 @@ const BoardPage = styled.div`
     padding-top: 10px;
     font-size: 1.2rem;
     letter-spacing: -1px;
-    
+
   }
 
   a.num {
@@ -157,11 +162,12 @@ export default function Notice() {
             setNoticeList(result.data);
         })
     }, [])
-    function testFunc(){
+
+    function testFunc() {
         console.log(noticeList.length)
     }
 
-    return(
+    return (
         <div>
             <Nav/>
             <Wrapper>
@@ -188,10 +194,11 @@ export default function Notice() {
                                     <div className="date">2021.1.15</div>
                                     <div className="count">33</div>
                                 </div>
-                                {noticeList.length > 0 && noticeList.map( element => (
+                                {noticeList.length > 0 && noticeList.map(element => (
                                     <div>
                                         <div className="num">{element.id}</div>
-                                        <div className="title">{element.title}</div>
+                                        <div className="title">
+                                            <Link href={`/notice/view/${element.id}`}>{element.title}</Link></div>
                                         <div className="writer">null</div>
                                         <div className="date">null</div>
                                         <div className="count">null</div>
@@ -210,7 +217,9 @@ export default function Notice() {
                                 <a href="#" className="bt last">&gt;&gt;</a>
                             </BoardPage>
                             <ButtonWrapper>
-                                <Button onClick={() => testFunc()}>등록</Button>
+                                <Link href={"/notice/write"}>
+                                    <Button>등록</Button>
+                                </Link>
                             </ButtonWrapper>
                         </div>
                     </BoardWrap>
