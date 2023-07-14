@@ -163,10 +163,6 @@ export default function Notice() {
         })
     }, [])
 
-    function testFunc() {
-        console.log(noticeList.length)
-    }
-
     return (
         <div>
             <Nav/>
