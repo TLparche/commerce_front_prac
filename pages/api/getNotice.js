@@ -8,16 +8,18 @@ export default async function handler(req, res) {
             let rows = [];
             if (query?.id) {
                 const id = parseInt(query.id); // 정수형으로 변환
-                const [result, fields] = await connection.execute('SELECT id, title, description FROM notice WHERE id = ?', [id]);
+                const [result, fields] = await connection.execute('SELECT id, title, description, name, time FROM notice WHERE id = ?', [id]);
                 rows = result;
             } else {
-                const [result, fields] = await connection.execute('SELECT id, title, description FROM notice');
+                const [result, fields] = await connection.execute('SELECT id, title, description, name, time FROM notice');
                 rows = result;
             }
             const data = rows.map(row => ({
                 id: row.id,
                 title: row.title,
-                description: row.description
+                description: row.description,
+                name: row.name,
+                time: row.time,
             }));
             res.status(200).json(data);
         } catch (error) {

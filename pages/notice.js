@@ -38,7 +38,7 @@ const ButtonWrapper = styled.div`
   font-size: 0;
 `
 
-const Button = styled.a`
+const Button = styled.button`
   display: inline-block;
   min-width: 80px;
   margin-left: 10px;
@@ -46,6 +46,7 @@ const Button = styled.a`
   border: 1px solid #000;
   border-radius: 2px;
   font-size: 1.4rem;
+  cursor: pointer;
 
   &:first-child {
     margin-left: 0;
@@ -104,10 +105,12 @@ const BoardList = styled.div`
 
   .writer {
     width: 10%;
+    font-size:15px;
   }
 
   .date {
     width: 10%;
+    font-size: 8px;
   }
 
   .count {
@@ -195,8 +198,8 @@ export default function Notice() {
                                         <div className="num">{element.id}</div>
                                         <div className="title">
                                             <Link href={`/notice/view/${element.id}`}>{element.title}</Link></div>
-                                        <div className="writer">null</div>
-                                        <div className="date">null</div>
+                                        <div className="writer">{element.name}</div>
+                                        <div className="date">{element.time}</div>
                                         <div className="count">null</div>
                                     </div>
                                 ))}

@@ -35,9 +35,15 @@ const WritingTitleDiv = styled.div`
 `
 const TitleSpan = styled.span`
   font-size: 14pt;
+  margin-left: 20px;
 `
 const TitleInput = styled.input`
-  width: 90%;
+  width: 60%;
+  margin-left: 30px;
+  height: 20px;
+`
+const NameInput = styled.input`
+  width: 15%;
   margin-left: 30px;
   height: 20px;
 `
@@ -69,11 +75,12 @@ export default function NoticeWrite() {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [password, setPassword] = useState("")
+    const [name, setName] = useState("")
     const router = useRouter();
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('/api/posts', { title, description, password});
+            const response = await axios.post('/api/posts', {title, description, password, name});
             console.log(response.data); // API 응답 데이터 처리
             await router.push("/notice")
         } catch (error) {
@@ -82,6 +89,7 @@ export default function NoticeWrite() {
         setTitle("")
         setDescription("")
         setPassword("")
+        setName("")
     };
 
     return (
@@ -102,6 +110,9 @@ export default function NoticeWrite() {
                                     <TitleSpan>제목</TitleSpan>
                                     <TitleInput type="text" name={"title"} placeholder={"제목을 입력해주세요."} value={title}
                                                 onChange={(event) => setTitle(event.target.value)}/>
+                                    <TitleSpan>이름</TitleSpan>
+                                    <NameInput type="text" name={"name"} placeholder={"이름을 입력해주세요."} value={name}
+                                               onChange={(event) => setName(event.target.value)}/>
                                 </WritingTitleDiv>
                                 <DescriptionWriteDiv>
                                     <TitleSpan>내용</TitleSpan>

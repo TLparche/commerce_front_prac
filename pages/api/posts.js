@@ -2,9 +2,11 @@ import connection from '@/lib/mysql';
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
-        const { title, description, password } = req.body;
-        const query = `INSERT INTO notice (title, description, password) VALUES (?, ?, ?)`;
-        const values = [title, description, password];
+        const { title, description, password, name } = req.body;
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
+        const query = `INSERT INTO notice (title, description, password, name, time) VALUES (?, ?, ?, ?, ?)`;
+        const values = [title, description, password, name, formattedDate];
         try {
             await connection.query(query, values);
             res.status(200).json({ success: true, message: 'Data saved successfully' })
