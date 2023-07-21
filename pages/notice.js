@@ -162,9 +162,24 @@ export default function Notice() {
     const [noticeList, setNoticeList] = useState([])
     useEffect(() => {
         axios.get("/api/getNotice").then(result => {
-            setNoticeList(result.data);
-        })
-    }, [])
+            const updatedNoticeList = result.data.map(element => {
+                if (element.time && element.time.substr) {
+                    const elementDate = element.time.substr(0, 11);
+                    const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ').substring(0, 11);
+                    if (elementDate === currentDate) {
+                        element.time = element.time.substr(11, 8);
+                    } else {
+                        element.time = element.time.substr(0, 10);
+                    }
+                    console.log(element.time)
+                    console.log(currentDate)
+                }
+                return element;
+            });
+            setNoticeList(updatedNoticeList);
+
+        });
+    }, []);
 
     return (
         <div>
