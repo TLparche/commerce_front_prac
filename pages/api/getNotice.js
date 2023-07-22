@@ -8,10 +8,10 @@ export default async function handler(req, res) {
             let rows = [];
             if (query?.id) {
                 const id = parseInt(query.id); // 정수형으로 변환
-                const [result, fields] = await connection.execute('SELECT id, title, description, name, time FROM notice WHERE id = ?', [id]);
+                const [result, fields] = await connection.execute('SELECT id, title, description, name, date, time FROM notice WHERE id = ?', [id]);
                 rows = result;
             } else {
-                const [result, fields] = await connection.execute('SELECT id, title, description, name, time FROM notice');
+                const [result, fields] = await connection.execute('SELECT id, title, description, name, date, time FROM notice');
                 rows = result;
             }
             const data = rows.map(row => ({
@@ -19,6 +19,7 @@ export default async function handler(req, res) {
                 title: row.title,
                 description: row.description,
                 name: row.name,
+                date: row.date,
                 time: row.time,
             }));
             res.status(200).json(data);
