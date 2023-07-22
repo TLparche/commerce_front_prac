@@ -160,24 +160,22 @@ const BoardPage = styled.div`
 `
 export default function Notice() {
     const [noticeList, setNoticeList] = useState([])
+    let currentDate = new Date().toISOString().slice(0, 10);
     useEffect(() => {
         axios.get("/api/getNotice").then(result => {
             const updatedNoticeList = result.data.map(element => {
-                if (element.time && element.time.substr) {
-                    const elementDate = element.time.substr(0, 11);
-                    const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' ').substring(0, 11);
-                    if (elementDate === currentDate) {
-                        element.time = element.time.substr(11, 8);
-                    } else {
-                        element.time = element.time.substr(0, 10);
-                    }
-                    console.log(element.time)
+                if (element.date) {
+                    const currentDate = new Date().toISOString().slice(0, 10);
+                    console.log(element.date)
                     console.log(currentDate)
+                    if (element.date === currentDate) {
+                        element.date = element.time
+                    }
                 }
                 return element;
             });
+            currentDate = new Date().toISOString().slice(0, 10);
             setNoticeList(updatedNoticeList);
-
         });
     }, []);
 
@@ -214,7 +212,7 @@ export default function Notice() {
                                         <div className="title">
                                             <Link href={`/notice/view/${element.id}`}>{element.title}</Link></div>
                                         <div className="writer">{element.name}</div>
-                                        <div className="date">{element.time}</div>
+                                        <div className="date">{element.date}</div>
                                         <div className="count">null</div>
                                     </div>
                                 ))}
