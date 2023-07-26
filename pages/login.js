@@ -1,20 +1,18 @@
-import {signIn, signOut, useSession} from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
-export default function Login(){
-    const {data: session} = useSession();
+export default function Login() {
+    const { data: session } = useSession();
+    const router = useRouter(); //
 
-    if(session){
-        return(
+    if (session) {
+        router.push("/")
+    } else {
+        return (
             <div>
-                {session.user?.name}반갑습니다. <br/>
-                <button onClick={() => signOut()}>로그아웃</button>
+                you are not login yet <br />
+                <button onClick={() => signIn('kakao')}>로그인</button>
             </div>
-        )
+        );
     }
-    return (
-        <div>
-            you are not login yet <br/>
-            <button onClick={() => signIn("kakao")}>로그인</button>
-        </div>
-    )
 }
