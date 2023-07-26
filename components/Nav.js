@@ -2,6 +2,7 @@ import {useState} from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
+import {signOut, useSession} from 'next-auth/react'
 
 const NavLink = styled(Link)`
   color: black;
@@ -153,24 +154,31 @@ const ServiceSpecDiv = styled.div`
   justify-content: center;
   padding: 0 10px 0 10px;
 
-  
+
 `
 const ServiceSpecLink = styled(Link)`
   padding-left: 20px;
   font-size: 16pt;
   color: black;
 `
+const ServiceSpecA = styled.a`
+  padding-left: 20px;
+  font-size: 16pt;
+  color: black;
+  cursor: pointer;
+`
 
 const BottomBarDiv = styled.div`
- height: 200px;
+  height: 200px;
   width: 100%;
-  
+
 `
 
 
 export default function Nav() {
     const [categorySelect, setCategorySelect] = useState(false)
     const [searchText, setSearchText] = useState("")
+    const {data: session} = useSession();
     const router = useRouter()
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
@@ -292,9 +300,11 @@ export default function Nav() {
                                         <ServiceSpecLink href={"/notice"} style={{textDecoration: "none"}}>
                                             Notice
                                         </ServiceSpecLink>
-                                        <ServiceSpecLink href={"/login"} style={{textDecoration: "none"}}>
-                                            Login
-                                        </ServiceSpecLink>
+                                        {session ?
+                                            <ServiceSpecA onClick={() => signOut()}
+                                                          style={{textDecoration: "none"}}>Logout</ServiceSpecA> :
+                                            <ServiceSpecLink href={"/login"}
+                                                             style={{textDecoration: "none"}}>Login</ServiceSpecLink>}
                                     </ServiceSpecDiv>
                                 </ServiceDiv>
                             </CategoryBarDiv>
@@ -307,7 +317,7 @@ export default function Nav() {
 }
 
 export function BottomBar() {
-    return(
+    return (
         <BottomBarDiv>
         </BottomBarDiv>
     )
