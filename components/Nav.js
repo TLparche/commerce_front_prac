@@ -156,6 +156,7 @@ const ServiceSpecDiv = styled.div`
   
 `
 const ServiceSpecLink = styled(Link)`
+  padding-left: 20px;
   font-size: 16pt;
   color: black;
 `
@@ -290,6 +291,9 @@ export default function Nav() {
                                     <ServiceSpecDiv>
                                         <ServiceSpecLink href={"/notice"} style={{textDecoration: "none"}}>
                                             Notice
+                                        </ServiceSpecLink>
+                                        <ServiceSpecLink href={"/login"} style={{textDecoration: "none"}}>
+                                            Login
                                         </ServiceSpecLink>
                                     </ServiceSpecDiv>
                                 </ServiceDiv>
